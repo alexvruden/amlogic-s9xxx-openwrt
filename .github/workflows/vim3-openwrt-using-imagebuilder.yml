@@ -79,7 +79,9 @@ on:
           - ophub
           - angel
           - alexvruden
-  IMAGEBUILDER_SH_VIM3: config/imagebuilder/imagebuilder.sh
+env:
+    TZ: Etc/UTC
+    IMAGEBUILDER_SH: config/imagebuilder/imagebuilder.sh
 
 jobs:
   build:
@@ -137,8 +139,8 @@ jobs:
         if: ${{ steps.init.outputs.status }} == 'success' && !cancelled()
         run: |
           RELEASES_BRANCH="${{ inputs.releases_branch }}"
-          chmod +x ${IMAGEBUILDER_SH_VIM3}
-          ${IMAGEBUILDER_SH_VIM3} ${RELEASES_BRANCH}
+          chmod +x ${IMAGEBUILDER_SH}
+          ${IMAGEBUILDER_SH} ${RELEASES_BRANCH}
           echo "RELEASES_TAG=${RELEASES_BRANCH/:/_}" >> ${GITHUB_ENV}
           echo "build_tag=OpenWrt_imagebuilder_${{ env.RELEASES_TAG }}_$(date +"%Y.%m")" >> ${GITHUB_OUTPUT}
           echo "status=success" >> ${GITHUB_OUTPUT}
