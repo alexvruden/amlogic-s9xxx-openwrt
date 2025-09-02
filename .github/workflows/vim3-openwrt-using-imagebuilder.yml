@@ -76,6 +76,7 @@ env:
     TZ: Etc/UTC
     IMAGEBUILDER_SH: config/imagebuilder/imagebuilder.sh
     openwrt_board_vim3: a311d
+    builder_name_uses: ${{ inputs.builder_name }}
 
 jobs:
   build:
@@ -172,8 +173,6 @@ jobs:
 
       - name: Packaging OpenWrt
         if: ${{ steps.clean.outputs.status }} == 'success' && !cancelled()
-        env:
-          builder_name_uses: ${{ inputs.builder_name }}
         uses: ${builder_name_uses}/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: imagebuilder/output/*rootfs.tar.gz
