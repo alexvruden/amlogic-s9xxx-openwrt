@@ -52,6 +52,7 @@ current_path="${PWD}"
 make_path="${current_path}/openwrt"
 tmp_path="${make_path}/tmp"
 out_path="${make_path}/out"
+custom_files_path="${current_path}/config/imagebuilder/files"
 openwrt_path="${current_path}/openwrt-armsr"
 openwrt_rootfs_file="*rootfs.tar.gz"
 resource_path="${current_path}/make-openwrt"
@@ -923,6 +924,7 @@ refactor_bootfs() {
     armbianenv_rootflags="compress=zstd:6"
 
     # Edit the uEnv.txt
+#-------------------------
     uenv_conf_file="uEnv.txt"
     [[ -f "${uenv_conf_file}" ]] && {
         sed -i "s|LABEL=ROOTFS|${uenv_rootdev}|g" ${uenv_conf_file}
@@ -930,6 +932,13 @@ refactor_bootfs() {
         sed -i "s|sun.*.dtb|${FDTFILE}|g" ${uenv_conf_file}
         sed -i "s|rk.*.dtb|${FDTFILE}|g" ${uenv_conf_file}
     }
+#-------------------------
+#++++++++++++++++++++++++++
+	if [[ -d ${custom_files_path}/bootfs ]]; then 
+		echo -e "${INFO} Replace files in BOOTFS from ${custom_files_path}/bootfs"
+		cp -rf ${custom_files_path}/bootfs/* ${tag_bootfs}
+	fi
+#++++++++++++++++++++++++++
 
     # Add an alternate file (/boot/extlinux/extlinux.conf)
     boot_extlinux_file="extlinux/extlinux.conf.bak"

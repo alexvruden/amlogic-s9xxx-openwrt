@@ -1,0 +1,4 @@
+LINUX=/zImage
+INITRD=/uInitrd
+FDT=/dtb/amlogic/meson-g12b-a311d-khadas-vim3.dtb
+APPEND=dtb=/dtb/amlogic/meson-g12b-a311d-khadas-vim3.dtb rootflags=compress=zstd:6 rw rootwait rootfstype=btrfs console=ttyAML0,115200n8 console=ttyS0,115200n8 fbcon=font:TER16x32 vt.default_utf8=1 earlyprintk no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 max_loop=128 cgroup_enable=cpuset swapaccount=1
