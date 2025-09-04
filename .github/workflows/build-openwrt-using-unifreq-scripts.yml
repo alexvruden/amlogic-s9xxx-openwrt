@@ -5,7 +5,7 @@
 #=====================================================================================
 
 name: Build OpenWrt using Unifreq scripts
-
+show_in_ui: false
 on:
   repository_dispatch:
   workflow_dispatch:
