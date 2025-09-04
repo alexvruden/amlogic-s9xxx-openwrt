@@ -1,6 +1,6 @@
 kbi hwver
 echo "Start OpenWrt mainline U-boot ... hwver: $hwver hostname: $hostname maxcpus: $maxcpus fdt: $fdtfile source: $boot_source:$BOOTED target: $target"
-if printenv bootfromsd; then exit; fi;
+# if printenv bootfromsd; then exit; fi;
 setenv loadaddr "0x44000000"
 setenv l_interface "usb mmc"
 setenv l_dev "3 2 1 0"
