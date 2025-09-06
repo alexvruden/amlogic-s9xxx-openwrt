@@ -82,7 +82,6 @@ env:
   DIY_P1_SH: config/${{ inputs.source_branch }}/diy-part1.sh
   DIY_P2_SH: config/${{ inputs.source_branch }}/diy-part2.sh
   TZ: Etc/UTC
-  openwrt_board: a311d
 
 jobs:
   build:
@@ -244,7 +243,7 @@ jobs:
         uses: alexvruden/amlogic-s9xxx-openwrt@main
         with:
           openwrt_path: openwrt/output/*rootfs.tar.gz
-          #openwrt_board: ${openwrt_board}
+          openwrt_board: a311d
           openwrt_kernel: ${{ inputs.openwrt_kernel }}
           auto_kernel: ${{ inputs.auto_kernel }}
           kernel_repo: ${{ inputs.kernel_repo }}
